@@ -13,9 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 window.addEventListener("load", () => {
-    loader.classList.add("fade-out");
-
     setTimeout(() => {
-        loader.remove();
-    }, 300);
+        loader.classList.add("fade-out");
+
+        setTimeout(() => {
+            loader.remove();
+        }, 300); // fade-out time
+    }, 500); // wait 500ms before removing loader
 });
