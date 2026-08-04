@@ -19,5 +19,5 @@ window.addEventListener("load", () => {
         setTimeout(() => {
             loader.remove();
         }, 300); // fade-out time
-    }, 500); // wait 500ms before removing loader
+    }, 1500); // wait 1.5 seconds before hiding
 });
