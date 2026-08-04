@@ -53,3 +53,17 @@
         stroke-dashoffset: -125px;
     }
 }
+
+.loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.loader-content p {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+}
