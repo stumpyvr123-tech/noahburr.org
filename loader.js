@@ -6,6 +6,7 @@ loader.innerHTML = `
 <div class="loader-content">
     <svg viewBox="25 25 50 50">
         <circle r="20" cy="50" cx="50"></circle>
+        <body style="background-color:#B0E0E6"></body>
     </svg>
     <p>Loading... Depending on your internet and device, this may take a while...</p>
 </div>
