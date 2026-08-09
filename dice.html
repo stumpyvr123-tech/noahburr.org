@@ -4,13 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
-    <link rel="stylesheet" href="/loader.css">
-    <script src="/loader.js" defer></script>
+    <title>Dice</title>
 </head>
 
 <body>
-    <script src="/loader.js"></script>
     <style>
         body {
             background-color: #f0f0f0;
@@ -38,30 +35,13 @@
             background-color: #45a049;
 
         }
-
-        .ma-blink {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
-            background-color: #ff1100;
-            color: rgb(243, 240, 240);
-            text-decoration: none;
-            border-radius: 5px;
-            cursor: pointer;
-            position: relative;
-            z-index: 10;
-
-        }
     </style>
 
-    <h1>Projects</h1>
+    <h1>Dice</h1>
 
-    <h3>All of my projects!</h3>
-
-    <script src="/loader.js"></script>
-    <a href="/magic8ball" class="buttonlink">Magic 8 Ball</a>
-    <a href="/dice" class="buttonlink">Dice (inspired by cmb422.com)</a>
-    <a href="/index" class="buttonlink">Back</a>
+    <button class="buttonlink" style="border: none;"
+        onclick="alert(['1', '2', '3' , '4', '5', '6'][Math.floor(Math.random() * 6)])">Roll</button>
+    < <a href="/projects" class="buttonlink">Back</a>
 </body>
 
 </html>
