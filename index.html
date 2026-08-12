@@ -13,16 +13,85 @@
 
 <body>
 
+    <button class="buttonlink" style="border: none;" id="theme-toggle" aria-label="Toggle dark mode">☀️Light
+        Mode</button>
+
+
+    <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+
+        // Helper function to update the button icon
+        function updateIcon(theme) {
+            if (theme === 'dark') {
+                toggleBtn.textContent = '🌙 Switch to light mode'; // Moon for dark mode
+            } else {
+                toggleBtn.textContent = '☀️ Switch to dark mode'; // Sun for light mode
+            }
+        }
+
+        // Check for saved user preference, otherwise use system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        let currentTheme = 'light';
+
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            currentTheme = 'dark';
+        }
+
+        // Apply the initial theme and icon on page load
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        updateIcon(currentTheme);
+
+        // Handle button click
+        toggleBtn.addEventListener('click', () => {
+            const activeTheme = document.documentElement.getAttribute('data-theme');
+            let newTheme = 'light';
+
+            if (activeTheme === 'light') {
+                newTheme = 'dark';
+            }
+
+            // Apply changes
+            document.documentElement.setAttribute('data-theme', newTheme);
+            updateIcon(newTheme);
+            localStorage.setItem('theme', newTheme); // Remember choice
+        });
+    </script>
+
 
 
     <style>
         body {
-            background-color: #f0f0f0;
+            color: white;
             font-family: Arial, sans-serif;
             text-align: center;
             background-color: powderblue;
 
         }
+
+
+        :root {
+            --bg-color: powderblue;
+            --text-color: #121212;
+            --toggle-bg: powderblue;
+        }
+
+
+        [data-theme="dark"] {
+            --bg-color: #0841ff;
+            --text-color: #ffffff;
+            --toggle-bg: #333333;
+        }
+
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+
+        }
+
 
         .buttonlink {
             display: inline-block;
