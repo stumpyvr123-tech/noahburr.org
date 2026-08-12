@@ -15,6 +15,19 @@
 
     <button class="buttonlink" style="border: none;" id="theme-toggle" aria-label="Toggle dark mode">☀️Light
         Mode</button>
+    <!-- Put this next to your existing dark mode button -->
+    <button class="buttonlink" style="border: none;" id="menu-toggle" aria-label="Open customization menu">⚙️</button>
+
+    <!-- The custom color picker menu -->
+    <div id="custom-menu" class="hidden-menu">
+        <h3>Options</h3>
+        <div class="menu-row">
+            <label for="color-picker">Background:</label>
+            <input type="color" id="color-picker" value="#ffffff">
+        </div>
+        <button id="reset-color">Reset Color</button>
+    </div>
+
 
 
     <script>
@@ -57,11 +70,90 @@
             updateIcon(newTheme);
             localStorage.setItem('theme', newTheme); // Remember choice
         });
+
+        // 1. Select the new HTML items
+        const menuToggle = document.getElementById('menu-toggle');
+        const customMenu = document.getElementById('custom-menu');
+        const colorPicker = document.getElementById('color-picker');
+        const resetColorBtn = document.getElementById('reset-color');
+
+        // 2. Open and close the gear menu when clicked
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            customMenu.classList.toggle('show');
+        });
+
+        // Close the menu if you click anywhere else on the screen
+        document.addEventListener('click', (e) => {
+            if (!customMenu.contains(e.target) && e.target !== menuToggle) {
+                customMenu.classList.remove('show');
+            }
+        });
+
+        // 3. Load saved custom color if the user picked one before
+        const savedCustomColor = localStorage.getItem('site-custom-bg');
+        if (savedCustomColor) {
+            document.documentElement.style.setProperty('--bg-color', savedCustomColor);
+            colorPicker.value = savedCustomColor;
+        }
+
+        // 4. Update the background color variable when the color picker changes
+        colorPicker.addEventListener('input', (e) => {
+            const selectedColor = e.target.value;
+            document.documentElement.style.setProperty('--bg-color', selectedColor);
+            localStorage.setItem('site-custom-bg', selectedColor);
+        });
+
+        // 5. Reset button to clear custom color and go back to default dark/light
+        resetColorBtn.addEventListener('click', () => {
+            document.documentElement.style.removeProperty('--bg-color');
+            localStorage.removeItem('site-custom-bg');
+            customMenu.classList.remove('show');
+        });
     </script>
 
 
 
     <style>
+        /* Styling for the popup box layout */
+        .hidden-menu {
+            display: none;
+            /* Hidden by default */
+            position: absolute;
+            top: 55px;
+            background-color: var(--panel-bg, #2ed219);
+            /* Uses your colors or defaults to light grey */
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            flex-direction: column;
+            gap: 12px;
+            z-index: 100;
+            text-align: center;
+        }
+
+        /* This class gets added by JS to show the menu */
+        .hidden-menu.show {
+            display: flex;
+        }
+
+        .menu-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #reset-color {
+            background-color: #ef4444;
+            color: white;
+            border: none;
+            padding: 6px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
         body {
             color: white;
             font-family: Arial, sans-serif;
