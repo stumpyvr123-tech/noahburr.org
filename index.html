@@ -13,20 +13,7 @@
 
 <body>
 
-    <button class="buttonlink" style="border: none;" id="theme-toggle" aria-label="Toggle dark mode">☀️Light
-        Mode</button>
-    <!-- Put this next to your existing dark mode button -->
-    <button class="buttonlink" style="border: none;" id="menu-toggle" aria-label="Open customization menu">⚙️</button>
 
-    <!-- The custom color picker menu -->
-    <div id="custom-menu" class="hidden-menu">
-        <h3>Options</h3>
-        <div class="menu-row">
-            <label for="color-picker">Background:</label>
-            <input type="color" id="color-picker" value="#ffffff">
-        </div>
-        <button id="reset-color">Reset Color</button>
-    </div>
 
 
 
@@ -34,6 +21,15 @@
 
 
     <style>
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
         .buttonlink {
             display: inline-block;
             padding: 10px 20px;
