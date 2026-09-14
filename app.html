@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APP</title>
+</head>
+
+<body>
+    <h1 style="text-align: center;">...</h1>
+    <script>
+        // --- CUSTOMIZE YOUR SETTINGS HERE ---
+        const delayInSeconds = 1;
+        const targetURL = "/sports.html";
+        // -------------------------------------
+
+        let timeRemaining = delayInSeconds;
+        const countdownElement = document.getElementById("countdown");
+
+        // Update the countdown timer every 1 second
+        const timer = setInterval(() => {
+            timeRemaining--;
+            countdownElement.textContent = timeRemaining;
+
+            // When the countdown reaches 0, clear timer and redirect
+            if (timeRemaining <= 0) {
+                clearInterval(timer);
+                window.location.replace(targetURL);
+            }
+        }, 1000);
+    </script>
+
+</body>
+
+</html>
